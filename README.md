@@ -9,7 +9,7 @@ AlgoZKP is a developer-friendly, open-source toolkit that brings the power of **
 
 -----
 
-## \#\# 🚫 The Problem: The Paradox of the Public Blockchain
+## 🚫 The Problem: The Paradox of the Public Blockchain
 
 Public blockchains offer incredible transparency, but this is a double-edged sword. Every interaction is public, creating major hurdles for applications that handle sensitive data:
 
@@ -19,13 +19,13 @@ Public blockchains offer incredible transparency, but this is a double-edged swo
 
 -----
 
-## \#\# ✅ The Solution: Your Gateway to Privacy
+##  ✅ The Solution: Your Gateway to Privacy
 
 **AlgoZKP is your gateway to privacy.** It's a modular SDK and a set of highly-optimized smart contracts that abstract away the complex cryptography of ZKPs. By leveraging the latest **AVM upgrades** (specifically the `ec_pairing_verify` opcode), we make on-chain ZKP verification efficient and affordable on Algorand.
 
 -----
 
-## \#\# 🚀 Key Features
+## 🚀 Key Features
 
   * **🧩 Modular & Reusable:** A clean SDK (TypeScript/Python) and on-chain primitives that can be easily integrated into any Algorand dApp.
   * **⚡ Optimized On-Chain Verifier:** A hyper-optimized PyTeal/TEAL smart contract that minimizes opcode costs for ZKP verification, making privacy practical.
@@ -34,7 +34,7 @@ Public blockchains offer incredible transparency, but this is a double-edged swo
 
 -----
 
-## \#\# ⚙️ How It Works
+##  ⚙️ How It Works
 
 AlgoZKP simplifies the complex ZKP workflow into three distinct steps:
 
@@ -44,7 +44,7 @@ AlgoZKP simplifies the complex ZKP workflow into three distinct steps:
 
 -----
 
-## \#\# 🛠️ Tech Stack
+##  🛠️ Tech Stack
 
   * **Blockchain:** **Algorand**
   * **Smart Contracts:** **PyTeal**, **TEAL**, **Algorand Virtual Machine (AVM)**
@@ -52,56 +52,10 @@ AlgoZKP simplifies the complex ZKP workflow into three distinct steps:
   * **Proof Generation:** **snarkjs** (compiled to WASM for browser use)
   * **SDK & Tooling:** **TypeScript**, **Python**, **AlgoKit**
 
------
-
-## \#\# 🏁 Getting Started
-
-### \#\#\# Prerequisites
-
-  * [AlgoKit](https://github.com/algorandfoundation/algokit-cli) v1.7.0+
-  * Node.js v18+
-  * Docker
-
-### \#\#\# Installation
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/algozkp.git
-cd algozkp
-
-# 2. Install dependencies using AlgoKit
-algokit bootstrap all
-```
-
-### \#\#\# Quick Example: Using the SDK
-
-Here's how a developer might use the SDK to generate and verify a simple proof.
-
-```typescript
-import { AlgoZKP } from './sdk';
-import { myAppClient } from './clients'; // Your AlgoKit-generated client
-
-// 1. Initialize the toolkit
-const zkp = new AlgoZKP();
-const userSecret = 'my-secret-password';
-const knownHash = '...'; // The public hash to prove against
-
-// 2. Generate the proof off-chain
-console.log('Generating proof...');
-const { proof, publicInputs } = await zkp.generateProof('hash-preimage', { secret: userSecret }, { hash: knownHash });
-
-// 3. Verify the proof on-chain
-console.log('Verifying proof on Algorand...');
-const result = await myAppClient.verify(proof, publicInputs);
-
-if (result) {
-  console.log('✅ Proof verified successfully!');
-}
-```
 
 -----
 
-## \#\# 🗺️ Project Status & Roadmap
+##  🗺️ Project Status & Roadmap
 
 **Current Status:** Alpha / Proof of Concept
 
@@ -115,10 +69,10 @@ This project is currently being developed for the AlgoBharat Hack Series \#2. Ou
 
 -----
 
-## \#\# 🤝 Contributing
+##  🤝 Contributing
 
-We believe in the power of open source to build foundational infrastructure. We welcome contributions of all kinds\! Please check out our `CONTRIBUTING.md` file to get started.
+We believe in the power of open source to build foundational infrastructure. We welcome contributions of all kinds\!
 
-## \#\# 📄 License
+##  📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.

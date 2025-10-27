@@ -1,0 +1,19 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 0.3.5
+_src_path: gh:algorandfoundation/algokit-typescript-template
+author_email: thatsdanish02@gmail.com
+author_name: Mohammad Danish
+code_tours: true
+contract_name: algo_escrow
+ide_jetbrains: true
+ide_vscode: true
+preset_name: custom
+project_name: AlgoEscrow
+use_audit: true
+use_dispenser: true
+use_github_actions: true
+use_linter: true
+use_pre_commit: true
+use_prettier: true
+use_vitest: true
+

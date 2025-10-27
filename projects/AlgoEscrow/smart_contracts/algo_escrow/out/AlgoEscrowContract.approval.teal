@@ -1,0 +1,971 @@
+#pragma version 10
+#pragma typetrack false
+
+// @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
+main:
+    intcblock 0 1 8
+    bytecblock "status" "releasedAmount" "buyer" "lastUpdated" "seller" "completedMilestones" "totalAmount" "totalMilestones" "active" "arbiter" 0x151f7c75 "milestone_completed" "completed" "disputed"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:27
+    // export class AlgoEscrowContract extends Contract {
+    txn NumAppArgs
+    bz main_bare_routing@12
+    pushbytess 0x06ccdaa3 0x9f2ae373 0x9b3986e7 0x9cc4c446 0x9cdea1bf 0x9f231ea5 0x21d8bed0 // method "createEscrow(account,account,account,uint64)void", method "approveMilestone(uint64)void", method "openDispute()void", method "resolveDispute(uint64,uint64)void", method "cancelAndRefund()void", method "getStatus()(byte[],uint64,uint64,uint64,uint64,uint64)", method "getParticipants()(address,address,address)"
+    txna ApplicationArgs 0
+    match main_createEscrow_route@3 main_approveMilestone_route@4 main_openDispute_route@5 main_resolveDispute_route@6 main_cancelAndRefund_route@7 main_getStatus_route@8 main_getParticipants_route@9
+
+main_after_if_else@16:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:27
+    // export class AlgoEscrowContract extends Contract {
+    intc_0 // 0
+    return
+
+main_getParticipants_route@9:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:213
+    // getParticipants(): [Address, Address, Address] {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub getParticipants
+    cover 2
+    concat
+    swap
+    concat
+    bytec 10 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_getStatus_route@8:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:194
+    // getStatus(): [bytes, uint64, uint64, uint64, uint64, uint64] {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub getStatus
+    dig 5
+    len
+    itob
+    extract 6 2
+    uncover 6
+    concat
+    uncover 5
+    itob
+    uncover 5
+    itob
+    uncover 5
+    itob
+    uncover 5
+    itob
+    uncover 5
+    itob
+    pushbytes 0x002a
+    uncover 5
+    concat
+    uncover 4
+    concat
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    swap
+    concat
+    bytec 10 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_cancelAndRefund_route@7:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:173
+    // cancelAndRefund(): void {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub cancelAndRefund
+    intc_1 // 1
+    return
+
+main_resolveDispute_route@6:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:133
+    // resolveDispute(releaseToSeller: uint64, refundToBuyer: uint64): void {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:27
+    // export class AlgoEscrowContract extends Contract {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:133
+    // resolveDispute(releaseToSeller: uint64, refundToBuyer: uint64): void {
+    callsub resolveDispute
+    intc_1 // 1
+    return
+
+main_openDispute_route@5:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:117
+    // openDispute(): void {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub openDispute
+    intc_1 // 1
+    return
+
+main_approveMilestone_route@4:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:74
+    // approveMilestone(milestoneIndex: uint64): void {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:27
+    // export class AlgoEscrowContract extends Contract {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:74
+    // approveMilestone(milestoneIndex: uint64): void {
+    callsub approveMilestone
+    intc_1 // 1
+    return
+
+main_createEscrow_route@3:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:47-52
+    // createEscrow(
+    //   buyer: Account,
+    //   seller: Account,
+    //   arbiter: Account,
+    //   totalMilestones: uint64
+    // ): void {
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:27
+    // export class AlgoEscrowContract extends Contract {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_1 // 1
+    ==
+    assert // invalid number of bytes for arc4.uint8
+    btoi
+    txnas Accounts
+    txna ApplicationArgs 2
+    dup
+    len
+    intc_1 // 1
+    ==
+    assert // invalid number of bytes for arc4.uint8
+    btoi
+    txnas Accounts
+    txna ApplicationArgs 3
+    dup
+    len
+    intc_1 // 1
+    ==
+    assert // invalid number of bytes for arc4.uint8
+    btoi
+    txnas Accounts
+    txna ApplicationArgs 4
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:47-52
+    // createEscrow(
+    //   buyer: Account,
+    //   seller: Account,
+    //   arbiter: Account,
+    //   totalMilestones: uint64
+    // ): void {
+    callsub createEscrow
+    intc_1 // 1
+    return
+
+main_bare_routing@12:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:27
+    // export class AlgoEscrowContract extends Contract {
+    txn OnCompletion
+    bnz main_after_if_else@16
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_1 // 1
+    return
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.createEscrow(buyer: bytes, seller: bytes, arbiter: bytes, totalMilestones: uint64) -> void:
+createEscrow:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:47-52
+    // createEscrow(
+    //   buyer: Account,
+    //   seller: Account,
+    //   arbiter: Account,
+    //   totalMilestones: uint64
+    // ): void {
+    proto 4 0
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:53
+    // assert(Txn.sender === buyer, 'Only buyer can create escrow');
+    txn Sender
+    frame_dig -4
+    ==
+    assert // Only buyer can create escrow
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:54
+    // assert(totalMilestones > 0, 'Must have milestones');
+    frame_dig -1
+    assert // Must have milestones
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:31
+    // buyer = GlobalState<Account>();
+    bytec_2 // "buyer"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:56
+    // this.buyer.value = buyer;
+    frame_dig -4
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:32
+    // seller = GlobalState<Account>();
+    bytec 4 // "seller"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:57
+    // this.seller.value = seller;
+    frame_dig -3
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:33
+    // arbiter = GlobalState<Account>();
+    bytec 9 // "arbiter"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:58
+    // this.arbiter.value = arbiter;
+    frame_dig -2
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:36
+    // totalMilestones = GlobalState<uint64>();
+    bytec 7 // "totalMilestones"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:59
+    // this.totalMilestones.value = totalMilestones;
+    frame_dig -1
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:37
+    // completedMilestones = GlobalState<uint64>();
+    bytec 5 // "completedMilestones"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:60
+    // this.completedMilestones.value = 0 as uint64;
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    bytec_1 // "releasedAmount"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:61
+    // this.releasedAmount.value = 0 as uint64;
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    bytec_0 // "status"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:62
+    // this.status.value = Bytes('active');
+    bytec 8 // "active"
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:39
+    // createdAt = GlobalState<uint64>();
+    pushbytes "createdAt"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:63
+    // this.createdAt.value = Global.latestTimestamp;
+    global LatestTimestamp
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:40
+    // lastUpdated = GlobalState<uint64>();
+    bytec_3 // "lastUpdated"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:64
+    // this.lastUpdated.value = Global.latestTimestamp;
+    global LatestTimestamp
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:66
+    // log('EscrowCreated');
+    pushbytes "EscrowCreated"
+    log
+    retsub
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.approveMilestone(milestoneIndex: uint64) -> void:
+approveMilestone:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:74
+    // approveMilestone(milestoneIndex: uint64): void {
+    proto 1 0
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:75
+    // assert(Txn.sender === this.buyer.value, 'Only buyer can approve milestone');
+    txn Sender
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:31
+    // buyer = GlobalState<Account>();
+    intc_0 // 0
+    bytec_2 // "buyer"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:75
+    // assert(Txn.sender === this.buyer.value, 'Only buyer can approve milestone');
+    ==
+    assert // Only buyer can approve milestone
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    intc_0 // 0
+    bytec_0 // "status"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:77
+    // this.status.value === Bytes('active') ||
+    bytec 8 // "active"
+    ==
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:77-78
+    // this.status.value === Bytes('active') ||
+    //   this.status.value === Bytes('milestone_completed'),
+    bnz approveMilestone_bool_true@2
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    intc_0 // 0
+    bytec_0 // "status"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:78
+    // this.status.value === Bytes('milestone_completed'),
+    bytec 11 // "milestone_completed"
+    ==
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:77-78
+    // this.status.value === Bytes('active') ||
+    //   this.status.value === Bytes('milestone_completed'),
+    bz approveMilestone_bool_false@3
+
+approveMilestone_bool_true@2:
+    intc_1 // 1
+
+approveMilestone_bool_merge@4:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:76-80
+    // assert(
+    //   this.status.value === Bytes('active') ||
+    //     this.status.value === Bytes('milestone_completed'),
+    //   'Invalid status'
+    // );
+    assert // Invalid status
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:37
+    // completedMilestones = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 5 // "completedMilestones"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:82
+    // milestoneIndex === this.completedMilestones.value,
+    frame_dig -1
+    dig 1
+    ==
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:81-84
+    // assert(
+    //   milestoneIndex === this.completedMilestones.value,
+    //   'Wrong milestone index'
+    // );
+    assert // Wrong milestone index
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:36
+    // totalMilestones = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 7 // "totalMilestones"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:86
+    // this.completedMilestones.value < this.totalMilestones.value,
+    dup2
+    <
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:85-88
+    // assert(
+    //   this.completedMilestones.value < this.totalMilestones.value,
+    //   'All milestones done'
+    // );
+    assert // All milestones done
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:34
+    // totalAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 6 // "totalAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:90-91
+    // const paymentAmount: uint64 =
+    //   (this.totalAmount.value / this.totalMilestones.value) as uint64;
+    swap
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:91
+    // (this.totalAmount.value / this.totalMilestones.value) as uint64;
+    /
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:93-97
+    // itxn.payment({
+    //   receiver: this.seller.value,
+    //   amount: paymentAmount,
+    //   fee: 0,
+    // }).submit();
+    itxn_begin
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:32
+    // seller = GlobalState<Account>();
+    intc_0 // 0
+    bytec 4 // "seller"
+    app_global_get_ex
+    assert // check GlobalState exists
+    dig 1
+    itxn_field Amount
+    itxn_field Receiver
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:93-97
+    // itxn.payment({
+    //   receiver: this.seller.value,
+    //   amount: paymentAmount,
+    //   fee: 0,
+    // }).submit();
+    intc_1 // 1
+    itxn_field TypeEnum
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:96
+    // fee: 0,
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:93-97
+    // itxn.payment({
+    //   receiver: this.seller.value,
+    //   amount: paymentAmount,
+    //   fee: 0,
+    // }).submit();
+    itxn_submit
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:99
+    // this.completedMilestones.value += 1 as uint64;
+    swap
+    intc_1 // 1
+    +
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:37
+    // completedMilestones = GlobalState<uint64>();
+    bytec 5 // "completedMilestones"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:99
+    // this.completedMilestones.value += 1 as uint64;
+    swap
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec_1 // "releasedAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:100
+    // this.releasedAmount.value += paymentAmount;
+    +
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    bytec_1 // "releasedAmount"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:100
+    // this.releasedAmount.value += paymentAmount;
+    swap
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:40
+    // lastUpdated = GlobalState<uint64>();
+    bytec_3 // "lastUpdated"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:101
+    // this.lastUpdated.value = Global.latestTimestamp;
+    global LatestTimestamp
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:37
+    // completedMilestones = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 5 // "completedMilestones"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:36
+    // totalMilestones = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 7 // "totalMilestones"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:103
+    // if (this.completedMilestones.value === this.totalMilestones.value) {
+    ==
+    bz approveMilestone_else_body@7
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    bytec_0 // "status"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:104
+    // this.status.value = Bytes('completed');
+    bytec 12 // "completed"
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:105
+    // log('EscrowCompleted');
+    pushbytes "EscrowCompleted"
+    log
+    retsub
+
+approveMilestone_else_body@7:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    bytec_0 // "status"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:107
+    // this.status.value = Bytes('milestone_completed');
+    bytec 11 // "milestone_completed"
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:108
+    // log('MilestoneApproved');
+    pushbytes "MilestoneApproved"
+    log
+    retsub
+
+approveMilestone_bool_false@3:
+    intc_0 // 0
+    b approveMilestone_bool_merge@4
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.openDispute() -> void:
+openDispute:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:119
+    // Txn.sender === this.buyer.value || Txn.sender === this.seller.value,
+    txn Sender
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:31
+    // buyer = GlobalState<Account>();
+    intc_0 // 0
+    bytec_2 // "buyer"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:119
+    // Txn.sender === this.buyer.value || Txn.sender === this.seller.value,
+    ==
+    bnz openDispute_bool_true@2
+    txn Sender
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:32
+    // seller = GlobalState<Account>();
+    intc_0 // 0
+    bytec 4 // "seller"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:119
+    // Txn.sender === this.buyer.value || Txn.sender === this.seller.value,
+    ==
+    bz openDispute_bool_false@3
+
+openDispute_bool_true@2:
+    intc_1 // 1
+
+openDispute_bool_merge@4:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:118-121
+    // assert(
+    //   Txn.sender === this.buyer.value || Txn.sender === this.seller.value,
+    //   'Only participants can dispute'
+    // );
+    assert // Only participants can dispute
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    intc_0 // 0
+    bytec_0 // "status"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:122
+    // assert(this.status.value === Bytes('active'), 'Can dispute only active');
+    bytec 8 // "active"
+    ==
+    assert // Can dispute only active
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    bytec_0 // "status"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:123
+    // this.status.value = Bytes('disputed');
+    bytec 13 // "disputed"
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:40
+    // lastUpdated = GlobalState<uint64>();
+    bytec_3 // "lastUpdated"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:124
+    // this.lastUpdated.value = Global.latestTimestamp;
+    global LatestTimestamp
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:125
+    // log('DisputeOpened');
+    pushbytes "DisputeOpened"
+    log
+    retsub
+
+openDispute_bool_false@3:
+    intc_0 // 0
+    b openDispute_bool_merge@4
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.resolveDispute(releaseToSeller: uint64, refundToBuyer: uint64) -> void:
+resolveDispute:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:133
+    // resolveDispute(releaseToSeller: uint64, refundToBuyer: uint64): void {
+    proto 2 0
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:134
+    // assert(Txn.sender === this.arbiter.value, 'Only arbiter can resolve');
+    txn Sender
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:33
+    // arbiter = GlobalState<Account>();
+    intc_0 // 0
+    bytec 9 // "arbiter"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:134
+    // assert(Txn.sender === this.arbiter.value, 'Only arbiter can resolve');
+    ==
+    assert // Only arbiter can resolve
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    intc_0 // 0
+    bytec_0 // "status"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:135
+    // assert(this.status.value === Bytes('disputed'), 'No dispute to resolve');
+    bytec 13 // "disputed"
+    ==
+    assert // No dispute to resolve
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:34
+    // totalAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 6 // "totalAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec_1 // "releasedAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:138
+    // (this.totalAmount.value - this.releasedAmount.value) as uint64;
+    -
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:141
+    // releaseToSeller + refundToBuyer === remaining,
+    frame_dig -2
+    frame_dig -1
+    +
+    ==
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:140-143
+    // assert(
+    //   releaseToSeller + refundToBuyer === remaining,
+    //   'Amounts must balance'
+    // );
+    assert // Amounts must balance
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:145
+    // if (releaseToSeller > 0) {
+    frame_dig -2
+    bz resolveDispute_after_if_else@3
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:146-150
+    // itxn.payment({
+    //   receiver: this.seller.value,
+    //   amount: releaseToSeller,
+    //   fee: 0,
+    // }).submit();
+    itxn_begin
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:32
+    // seller = GlobalState<Account>();
+    intc_0 // 0
+    bytec 4 // "seller"
+    app_global_get_ex
+    assert // check GlobalState exists
+    frame_dig -2
+    itxn_field Amount
+    itxn_field Receiver
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:146-150
+    // itxn.payment({
+    //   receiver: this.seller.value,
+    //   amount: releaseToSeller,
+    //   fee: 0,
+    // }).submit();
+    intc_1 // 1
+    itxn_field TypeEnum
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:149
+    // fee: 0,
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:146-150
+    // itxn.payment({
+    //   receiver: this.seller.value,
+    //   amount: releaseToSeller,
+    //   fee: 0,
+    // }).submit();
+    itxn_submit
+
+resolveDispute_after_if_else@3:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:153
+    // if (refundToBuyer > 0) {
+    frame_dig -1
+    bz resolveDispute_after_if_else@6
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:154-158
+    // itxn.payment({
+    //   receiver: this.buyer.value,
+    //   amount: refundToBuyer,
+    //   fee: 0,
+    // }).submit();
+    itxn_begin
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:31
+    // buyer = GlobalState<Account>();
+    intc_0 // 0
+    bytec_2 // "buyer"
+    app_global_get_ex
+    assert // check GlobalState exists
+    frame_dig -1
+    itxn_field Amount
+    itxn_field Receiver
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:154-158
+    // itxn.payment({
+    //   receiver: this.buyer.value,
+    //   amount: refundToBuyer,
+    //   fee: 0,
+    // }).submit();
+    intc_1 // 1
+    itxn_field TypeEnum
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:157
+    // fee: 0,
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:154-158
+    // itxn.payment({
+    //   receiver: this.buyer.value,
+    //   amount: refundToBuyer,
+    //   fee: 0,
+    // }).submit();
+    itxn_submit
+
+resolveDispute_after_if_else@6:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:34
+    // totalAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 6 // "totalAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    bytec_1 // "releasedAmount"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:161
+    // this.releasedAmount.value = this.totalAmount.value;
+    swap
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    bytec_0 // "status"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:162
+    // this.status.value = Bytes('completed');
+    bytec 12 // "completed"
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:40
+    // lastUpdated = GlobalState<uint64>();
+    bytec_3 // "lastUpdated"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:163
+    // this.lastUpdated.value = Global.latestTimestamp;
+    global LatestTimestamp
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:165
+    // log('DisputeResolved');
+    pushbytes "DisputeResolved"
+    log
+    retsub
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.cancelAndRefund() -> void:
+cancelAndRefund:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:174
+    // assert(Txn.sender === this.buyer.value, 'Only buyer can cancel');
+    txn Sender
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:31
+    // buyer = GlobalState<Account>();
+    intc_0 // 0
+    bytec_2 // "buyer"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:174
+    // assert(Txn.sender === this.buyer.value, 'Only buyer can cancel');
+    swap
+    dig 1
+    ==
+    assert // Only buyer can cancel
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    intc_0 // 0
+    bytec_0 // "status"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:175
+    // assert(this.status.value === Bytes('active'), 'Not active escrow');
+    bytec 8 // "active"
+    ==
+    assert // Not active escrow
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec_1 // "releasedAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:176
+    // assert(this.releasedAmount.value === 0, 'Funds already released');
+    !
+    assert // Funds already released
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:178-182
+    // itxn.payment({
+    //   receiver: this.buyer.value,
+    //   amount: this.totalAmount.value,
+    //   fee: 0,
+    // }).submit();
+    itxn_begin
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:34
+    // totalAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 6 // "totalAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    itxn_field Amount
+    itxn_field Receiver
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:178-182
+    // itxn.payment({
+    //   receiver: this.buyer.value,
+    //   amount: this.totalAmount.value,
+    //   fee: 0,
+    // }).submit();
+    intc_1 // 1
+    itxn_field TypeEnum
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:181
+    // fee: 0,
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:178-182
+    // itxn.payment({
+    //   receiver: this.buyer.value,
+    //   amount: this.totalAmount.value,
+    //   fee: 0,
+    // }).submit();
+    itxn_submit
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    bytec_0 // "status"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:184
+    // this.status.value = Bytes('cancelled');
+    pushbytes "cancelled"
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:40
+    // lastUpdated = GlobalState<uint64>();
+    bytec_3 // "lastUpdated"
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:185
+    // this.lastUpdated.value = Global.latestTimestamp;
+    global LatestTimestamp
+    app_global_put
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:186
+    // log('EscrowCancelled');
+    pushbytes "EscrowCancelled"
+    log
+    retsub
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.getStatus() -> bytes, uint64, uint64, uint64, uint64, uint64:
+getStatus:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:34
+    // totalAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 6 // "totalAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:35
+    // releasedAmount = GlobalState<uint64>();
+    intc_0 // 0
+    bytec_1 // "releasedAmount"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:195-196
+    // const remaining: uint64 =
+    //   (this.totalAmount.value - this.releasedAmount.value) as uint64;
+    swap
+    dig 1
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:196
+    // (this.totalAmount.value - this.releasedAmount.value) as uint64;
+    -
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:38
+    // status = GlobalState<bytes>();
+    intc_0 // 0
+    bytec_0 // "status"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:37
+    // completedMilestones = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 5 // "completedMilestones"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:36
+    // totalMilestones = GlobalState<uint64>();
+    intc_0 // 0
+    bytec 7 // "totalMilestones"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:40
+    // lastUpdated = GlobalState<uint64>();
+    intc_0 // 0
+    bytec_3 // "lastUpdated"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:198-205
+    // return [
+    //   this.status.value,
+    //   this.completedMilestones.value,
+    //   this.totalMilestones.value,
+    //   this.releasedAmount.value,
+    //   remaining,
+    //   this.lastUpdated.value,
+    // ];
+    cover 3
+    uncover 5
+    uncover 5
+    uncover 5
+    retsub
+
+
+// smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts::AlgoEscrowContract.getParticipants() -> bytes, bytes, bytes:
+getParticipants:
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:31
+    // buyer = GlobalState<Account>();
+    intc_0 // 0
+    bytec_2 // "buyer"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:32
+    // seller = GlobalState<Account>();
+    intc_0 // 0
+    bytec 4 // "seller"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:33
+    // arbiter = GlobalState<Account>();
+    intc_0 // 0
+    bytec 9 // "arbiter"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/algo_escrow/AlgoEscrowContract.algo.ts:214-218
+    // return [
+    //   new Address(this.buyer.value),
+    //   new Address(this.seller.value),
+    //   new Address(this.arbiter.value),
+    // ];
+    retsub

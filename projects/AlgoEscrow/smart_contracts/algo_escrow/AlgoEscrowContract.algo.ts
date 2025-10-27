@@ -1,5 +1,5 @@
 /* ============================================================
- * AlgoEscrow.algo.ts
+ * AlgoEscrowContract.algo.ts
  * Compatible with puya-ts 1.0.0-beta.74
  * Implements milestone-based escrow logic using Algorand TypeScript
  * ============================================================
@@ -24,7 +24,7 @@ import { Address } from '@algorandfoundation/algorand-typescript/arc4';
  * CONTRACT DEFINITION
  * ============================================================
  */
-export class AlgoEscrow extends Contract {
+export class AlgoEscrowContract extends Contract {
   // ------------------------------------------------------------
   // GLOBAL STATE
   // ------------------------------------------------------------
@@ -38,14 +38,6 @@ export class AlgoEscrow extends Contract {
   status = GlobalState<bytes>();
   createdAt = GlobalState<uint64>();
   lastUpdated = GlobalState<uint64>();
-
-  /* ============================================================
-   * HELLO METHOD (for testing)
-   * ============================================================
-   */
-  hello(name: string): string {
-    return 'Hello, ' + name;
-  }
 
   /* ============================================================
    * CREATE ESCROW

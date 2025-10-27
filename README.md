@@ -3,7 +3,6 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Built for AlgoBharat](httpshttps://img.shields.io/badge/AlgoBharat-Road_to_Impact_2025-blue.svg)
 ![Tech: Algorand](https://img.shields.io/badge/Tech-Algorand-black.svg)
-![Tech: PyTeal](https://img.shields.io/badge/Tech-PyTeal-green.svg)
 
 **AlgoEscrow Pro** is a production-ready, open-source toolkit for integrating secure, milestone-based payments into any Algorand dApp. It provides a robust, smart-contract-based system for trustless transactions, complete with real-time tracking and a built-in dispute resolution mechanism.
 
@@ -138,5 +137,3 @@ This code is fully open-source, and we encourage community contributions to add 
 
 This project is released under the **MIT License**.
 
-```
-```
